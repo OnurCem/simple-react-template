@@ -4,7 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const JS_JSX_PATTERN = /\.jsx?$/;
 
 module.exports = {
-  entry: './src/App.jsx',
+  entry: [
+    './src/polyfills.js',
+    './src/App.jsx'
+  ],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
