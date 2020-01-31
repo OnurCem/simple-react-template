@@ -26,6 +26,16 @@ module.exports = {
       template: 'index.html'
     })
   ],
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx'
+    ],
+    modules: [
+      path.resolve(__dirname, 'src'),
+      'node_modules'
+    ]
+  },
   devServer: {
     port: 3000,
     hot: true
