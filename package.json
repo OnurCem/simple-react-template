@@ -1,7 +1,7 @@
 {
   "name": "simple-react-template",
   "version": "1.0.0",
-  "description": "Very simple React template project with webpack configuration",
+  "description": "Simple React project template with webpack configuration",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p"
