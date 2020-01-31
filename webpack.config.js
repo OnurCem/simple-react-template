@@ -1,7 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const JS_JSX_PATTERN = /\.jsx?$/;
+const JS_JSX_PATTERN = /\.jsx?$/i;
+const SASS_PATTERN = /\.s[ac]ss$/i;
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: [
@@ -10,7 +14,7 @@ module.exports = {
   ],
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -18,13 +22,27 @@ module.exports = {
         test: JS_JSX_PATTERN,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: SASS_PATTERN,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev
+            }
+          },
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html'
-    })
+    }),
+    new MiniCssExtractPlugin()
   ],
   resolve: {
     extensions: [
